@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\HotelController;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,6 +14,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', [HotelController::class, 'getHotels'])->name('hotel-get');
+Route::post('/', [HotelController::class, 'postHotel'])->name('hotel-post');
+Route::post('update/{id}', [HotelController::class, 'updateHotel'])->name('hotel-update');
+Route::post('rooms/{id}', [HotelController::class, 'postRooms'])->name('rooms-post');
+Route::post('rooms/edit/[id]', [HotelController::class, 'postEditRooms'])->name('rooms-edit-post');
